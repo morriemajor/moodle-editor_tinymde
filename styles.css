@@ -1,0 +1,53 @@
+/* Border/rounded-corner box around the toolbar + editor area, matching TinyMCE's own chrome
+ * (.tox-tinymce in lib/editor/tiny/js/tinymce/skins/ui/oxide/skin.css: border: 2px solid
+ * #eeeeee; border-radius: 10px; overflow: hidden). TinyMDE ships no equivalent of its own -
+ * its toolbar and editor area are unbordered siblings - so this wraps them (see
+ * amd/src/editor.js's .tinymde-wrapper) the same way TinyMCE wraps its own toolbar + iframe in
+ * one flex column.
+ */
+.tinymde-wrapper {
+    border: 2px solid #eeeeee;
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Deliberately not flex:1 - the editor area's height is explicitly managed (initial height set
+ * in amd/src/editor.js's createStatusbar(), then live-updated by the resize handle below), and
+ * flex-grow would otherwise fight with that.
+ */
+.tinymde-resizable-area {
+    box-sizing: border-box;
+    min-height: 175px;
+    overflow-y: auto;
+}
+
+/* Status bar + resize handle, matching TinyMCE's own .tox-statusbar / .tox-statusbar__resize-handle
+ * (same source SVG icon - see loader.js's getResizeHandleSvg()).
+ */
+.tinymde-statusbar {
+    background-color: #fff;
+    border-top: 1px solid #eeeeee;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end;
+    padding: 3px 4px;
+}
+
+.tinymde-resize-handle {
+    cursor: ns-resize;
+    display: flex;
+    fill: rgba(34, 47, 62, 0.5);
+    padding: 2px;
+}
+
+.tinymde-resize-handle:hover,
+.tinymde-resize-handle:focus {
+    fill: #222f3e;
+}
+
+.tinymde-resize-handle svg {
+    display: block;
+}

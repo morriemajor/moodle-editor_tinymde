@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<libraries>
+  <library>
+    <location>js</location>
+    <name>TinyMDE</name>
+    <license>MIT</license>
+    <version>0.2.32</version>
+    <repository>https://github.com/jefago/tiny-markdown-editor</repository>
+  </library>
+</libraries>
