@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'editor_tinymde';
-$plugin->version   = 2026080800;
-$plugin->requires  = 2026042000; // Moodle 5.2.
+$plugin->version   = 2026080801;
+$plugin->requires  = 2024100700; // Moodle 4.5.
 $plugin->maturity  = MATURITY_ALPHA;
 $plugin->release   = '0.1';

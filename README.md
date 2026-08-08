@@ -24,7 +24,8 @@ preferences*, it renders wherever a field's format is Markdown, the same as Tiny
 
 ## Requirements
 
-Moodle 5.2 or later.
+Moodle 4.5 or later. Developed and primarily tested against Moodle 5.2; CI covers 4.5, 5.0, 5.1
+and 5.2 (see `.github/workflows/ci.yml`).
 
 ## Installation
 
@@ -39,6 +40,8 @@ This repo is developed and tested separately from any Moodle install - see `CLAU
 
  * Version 0.1
    Initial release.
+   * Lowered minimum required version to Moodle 4.5 and added a GitHub Actions CI workflow
+     (moodlehq/moodle-plugin-ci) testing against Moodle 4.5, 5.0, 5.1 and 5.2.
    * Vendored TinyMDE, patched to stop its UMD bundle self-registering as an anonymous AMD
      module (a real risk of colliding with Moodle's RequireJS loader) - see `js/UPSTREAM.md`.
    * Implemented as a standard Moodle `texteditor` (`classes/editor.php`), selectable under
