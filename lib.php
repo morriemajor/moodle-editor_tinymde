@@ -25,6 +25,4 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
 class_alias(\editor_tinymde\editor::class, 'tinymde_texteditor');

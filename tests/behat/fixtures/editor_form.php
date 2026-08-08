@@ -37,7 +37,6 @@ require_once($CFG->libdir . '/formslib.php');
  * Form with a single editor field.
  */
 class editor_tinymde_test_form extends moodleform {
-
     #[\Override]
     protected function definition() {
         $mform = $this->_form;

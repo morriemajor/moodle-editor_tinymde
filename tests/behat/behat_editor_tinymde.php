@@ -34,7 +34,6 @@ require_once(__DIR__ . '/../../../../behat/behat_base.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class behat_editor_tinymde extends behat_base {
-
     /**
      * Press the up or down arrow key on TinyMDE's resize handle.
      *
