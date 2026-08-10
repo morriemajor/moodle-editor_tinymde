@@ -9,7 +9,7 @@ Version 0.1, 8 August 2026.
 
 A Moodle text editor plugin that wraps [TinyMDE](https://github.com/jefago/tiny-markdown-editor) a small, dependency-light Markdown editor for `FORMAT_MARKDOWN` content.
 
-It exists so that [filter_editor_selector](../editor_selector) has a real Moodle editor plugin to attach for the Markdown format option, the same way it attaches TinyMCE (via core's `editor_tiny`) for the HTML format option, rather than vendoring a Markdown editor directly inside that filter.
+It exists so that [filter_editor_selector](../moodle-filter_editor_selector) has a real Moodle editor plugin to attach for the Markdown format option, the same way it attaches TinyMCE (via core's `editor_tiny`) for the HTML format option, rather than vendoring a Markdown editor directly inside that filter.
 
 It also works as a normal, standalone Moodle editor: selectable under *Preferences > Editor
 preferences*, it renders wherever a field's format is Markdown, the same as TinyMCE or Atto would for HTML.
@@ -52,7 +52,7 @@ This repo is developed and tested separately from any Moodle install - see `CLAU
      and editor area, and a drag-to-resize handle (with a keyboard equivalent) starting at a
      compact default height - the handle's icon is fetched live from TinyMCE's own vendored icon
      pack rather than a copied asset, so it stays in sync if that icon is ever updated.
-   * Wired into [filter_editor_selector](../editor_selector)'s toggle button for the Markdown
+   * Wired into [filter_editor_selector](../moodle-filter_editor_selector)'s toggle button for the Markdown
      format option, the same way that plugin already attaches TinyMCE for HTML.
    * Added Behat tests covering native rendering (via the real `use_editor()` path, not just
      dynamic attachment), the resize handle, and the underlying textarea being correctly restored

@@ -8,48 +8,50 @@ This repo is the source for `editor_tinymde`, a Moodle "editor" subsystem plugin
 [TinyMDE](https://github.com/jefago/tiny-markdown-editor) (`tiny-markdown-editor` on npm, MIT
 licensed), a small dependency-light Markdown editor, for `FORMAT_MARKDOWN` content.
 
-It exists so that [filter_editor_selector](../editor_selector) (a sibling project - see its own
-CLAUDE.md) has a real Moodle editor plugin to dynamically attach for the Markdown format option,
-the same way it already attaches TinyMCE (via core's `editor_tiny`) for the HTML format option -
-rather than vendoring a Markdown editor directly inside that filter. That plugin's
-`amd/src/toggle.js` now does exactly this (dynamically `import()`s `editor_tinymde/editor` and
-calls `setupForTarget`/`removeInstanceForTarget`), and formally depends on this plugin via
+It exists so that [filter_editor_selector](../moodle-filter_editor_selector) (a sibling project -
+see its own CLAUDE.md) has a real Moodle editor plugin to dynamically attach for the Markdown
+format option, the same way it already attaches TinyMCE (via core's `editor_tiny`) for the HTML
+format option - rather than vendoring a Markdown editor directly inside that filter. That
+plugin's `amd/src/toggle.js` now does exactly this (dynamically `import()`s `editor_tinymde/editor`
+and calls `setupForTarget`/`removeInstanceForTarget`), and formally depends on this plugin via
 `$plugin->dependencies` in its `version.php`.
 
 This is a standalone plugin source checkout — it is **not** a Moodle install itself and cannot be
 run on its own. It is developed here and tested against a separate Moodle instance at
-`../moodle-dev` (sibling directory, not part of this repo) - the same instance `editor_selector`
+`~/working/moodle-dev` (not part of this repo) - the same instance `moodle-filter_editor_selector`
 uses.
 
-## Test environment (`../moodle-dev`)
+## Test environment (`~/working/moodle-dev`)
 
-Same environment as `editor_selector` - see that project's CLAUDE.md for the full description of
-`../moodle-dev/moodle` and `../moodle-dev/moodle-docker`. In short: Moodle 5.2 core checkout
-(web root `public/`), running via moodlehq/moodle-docker on `http://localhost:8000`.
+Same environment as `moodle-filter_editor_selector` - see that project's CLAUDE.md for the full
+description of `~/working/moodle-dev/moodle` and `~/working/moodle-dev/moodle-docker`. In short:
+Moodle 5.2 core checkout (web root `public/`), running via moodlehq/moodle-docker on
+`http://localhost:8000`.
 
 ### Getting this plugin into the test site: sync, not symlink
 
 Run `./sync-to-moodle.sh` from this repo to copy it into
-`../moodle-dev/moodle/public/lib/editor/tinymde` and rebuild its AMD JS. Re-run it after **any**
-change (PHP or JS) that you want to test.
+`~/working/moodle-dev/moodle/public/lib/editor/tinymde` and rebuild its AMD JS. Re-run it after
+**any** change (PHP or JS) that you want to test.
 
-This is a real copy, not a symlink, for the same reason as `editor_selector`: Moodle's Grunt AMD
-build computes each module's Moodle component name from the source file's real
+This is a real copy, not a symlink, for the same reason as `moodle-filter_editor_selector`:
+Moodle's Grunt AMD build computes each module's Moodle component name from the source file's real
 (`fs.realpathSync()`-resolved) filesystem path, and fails if that path isn't inside the
-`moodle-dev/moodle` checkout - see `editor_selector/CLAUDE.md` for the full discovery writeup.
-The script pins `PATH` to `/opt/homebrew/opt/node@22/bin` (Grunt needs Node 22.x specifically,
-per `moodle-dev/moodle/.nvmrc`) - `brew install node@22` if missing. `--no-build` skips the Grunt
-step for PHP-only changes. Built `amd/build/*` output is copied back into this repo and should be
-committed alongside `amd/src/*`, per normal Moodle plugin convention.
+`moodle-dev/moodle` checkout - see `moodle-filter_editor_selector/CLAUDE.md` for the full
+discovery writeup. The script pins `PATH` to `/opt/homebrew/opt/node@22/bin` (Grunt needs Node
+22.x specifically, per `moodle-dev/moodle/.nvmrc`) - `brew install node@22` if missing.
+`--no-build` skips the Grunt step for PHP-only changes. Built `amd/build/*` output is copied back
+into this repo and should be committed alongside `amd/src/*`, per normal Moodle plugin
+convention.
 
 ## Common commands
 
-Same `moodle-docker-compose` invocation pattern as `editor_selector` - run from
-`../moodle-dev/moodle-docker`, after exporting its `.env` (the wrapper script doesn't auto-source
-it):
+Same `moodle-docker-compose` invocation pattern as `moodle-filter_editor_selector` - run from
+`~/working/moodle-dev/moodle-docker`, after exporting its `.env` (the wrapper script doesn't
+auto-source it):
 
 ```bash
-cd ../moodle-dev/moodle-docker
+cd ~/working/moodle-dev/moodle-docker
 set -a && source .env && set +a
 
 # Install/upgrade this plugin in the test site after bumping version.php
@@ -194,7 +196,7 @@ All passing as of this writing (5 scenarios, 67 steps standalone; 18 scenarios, 
 with `filter_editor_selector`'s own suite). See that plugin's CLAUDE.md for the shared
 Behat-running commands and environment gotchas (install-order-sensitive defaults on a fresh site,
 needing `util.php --enable` after adding new feature/step files, etc.) - all of it applies here
-too, since both plugins share the one `../moodle-dev` test site.
+too, since both plugins share the one `~/working/moodle-dev` test site.
 
 ## Known gaps / next steps
 

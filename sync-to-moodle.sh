@@ -6,13 +6,13 @@
 # Moodle's AMD build resolves each source file's real filesystem path to work
 # out its module name, so the plugin has to physically exist inside the
 # moodle-dev checkout while building - a symlink pointing back to this repo
-# does not work. See ../editor_selector/CLAUDE.md for the full explanation
-# (discovered there first; this script is copied from that plugin's
-# sync-to-moodle.sh with the destination path changed).
+# does not work. See ../moodle-filter_editor_selector/CLAUDE.md for the full
+# explanation (discovered there first; this script is copied from that
+# plugin's sync-to-moodle.sh with the destination path changed).
 set -euo pipefail
 
 SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-MOODLE_DIR="${MOODLE_DIR:-$SRC/../moodle-dev/moodle}"
+MOODLE_DIR="${MOODLE_DIR:-$HOME/working/moodle-dev/moodle}"
 DEST="$MOODLE_DIR/public/lib/editor/tinymde"
 NODE22="/opt/homebrew/opt/node@22/bin"
 
